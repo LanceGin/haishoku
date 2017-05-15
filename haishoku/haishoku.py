@@ -12,7 +12,7 @@ def get_image(image_path):
     return image
 
 def get_thumbnail(image):
-    image.thumbnail((50, 50))
+    image.thumbnail((30, 30))
     return image
 
 def get_colors(image_path):
