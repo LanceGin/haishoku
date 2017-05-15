@@ -1,0 +1,1 @@
+# haishoku test case
