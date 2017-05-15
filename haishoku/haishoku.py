@@ -3,10 +3,39 @@
 # @Date    : 2017-05-15 15:10
 # @Author  : Gin (gin.lance.inside@hotmail.com)
 # @Link    : 
-# @Disc    : show the item design works' palette
+# @Disc    : about Pillow Apis
 
-def main():
-    print("hello haishoku.")
+from PIL import Image
 
-if __name__ == "__main__":
-    main()
+def get_image(image_path):
+    image = Image.open(image_path)
+    return image
+
+def get_thumbnail(image):
+    image.thumbnail((50, 50))
+    return image
+
+def get_colors(image_path):
+    """ image instance
+    """
+    image = get_image(image_path)
+
+    """ image thumbnail
+        size: 256 * 256
+        reduce the calculate time 
+    """
+    thumbnail = get_thumbnail(image)
+
+
+    """ calculate the max colors the image cound have
+        if the color is different in every pixel, the color counts may be the max.
+        so : 
+        max_colors = image.height * image.width
+    """
+    image_height = thumbnail.height
+    image_width = thumbnail.width
+    max_colors = image_height * image_width
+    print(max_colors)
+
+    image_colors = image.getcolors(max_colors)
+    return image_colors
