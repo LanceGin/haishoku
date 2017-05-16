@@ -38,6 +38,9 @@ def main():
     else:
         colors_mean = temp_sorted_colors_mean
 
+    # sort the colors_mean
+    colors_mean = sorted(colors_mean, key=lambda x:x[1])
+
     # getnerate colors boxes
     images = []
     for color_mean in colors_mean:
