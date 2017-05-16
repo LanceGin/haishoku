@@ -31,7 +31,14 @@ def main():
                     color_mean = alg.get_weighted_mean(grouped_image_color)
                     colors_mean.append(color_mean)
 
-    for color_mean in sorted(colors_mean):
+    # return the most 8 colors
+    temp_sorted_colors_mean = sorted(colors_mean)
+    if 8 < len(temp_sorted_colors_mean):
+        colors_mean = temp_sorted_colors_mean[len(temp_sorted_colors_mean)-8 : len(temp_sorted_colors_mean)]
+    else:
+        colors_mean = temp_sorted_colors_mean
+
+    for color_mean in colors_mean:
         print(color_mean)
 
 
