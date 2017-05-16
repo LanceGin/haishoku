@@ -99,4 +99,27 @@ def group_by_accuracy(sorted_tuple, accuracy=3):
 
     return rgb
 
+def get_weighted_mean(grouped_image_color):
+    """ calculate every group's weighted mean
 
+        r_weighted_mean = sigma(r * count) / sigma(count)
+        g_weighted_mean = sigma(g * count) / sigma(count)
+        b_weighted_mean = sigma(b * count) / sigma(count)
+    """
+    sigma_count = 0
+    sigma_r = 0
+    sigma_g = 0
+    sigma_b = 0
+
+    for item in grouped_image_color:
+        sigma_count += item[0]
+        sigma_r += item[1][0] * item[0]
+        sigma_g += item[1][1] * item[0]
+        sigma_b += item[1][2] * item[0]
+
+    r_weighted_mean = int(sigma_r / sigma_count)
+    g_weighted_mean = int(sigma_g / sigma_count)
+    b_weighted_mean = int(sigma_b / sigma_count)
+    
+    weighted_mean = (sigma_count, (r_weighted_mean, g_weighted_mean, b_weighted_mean))
+    return weighted_mean

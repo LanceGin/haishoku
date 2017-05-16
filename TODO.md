@@ -6,6 +6,6 @@
 
 4. sort the item colors tuple. ( √ )
 
-5. calculate the colors' weighted mean.
+5. calculate the colors' weighted mean. ( √ )
 
 6. return the color. ( #xxxxxx )
