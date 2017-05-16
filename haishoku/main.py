@@ -38,8 +38,14 @@ def main():
     else:
         colors_mean = temp_sorted_colors_mean
 
+    # getnerate colors boxes
+    images = []
     for color_mean in colors_mean:
-        print(color_mean)
+        color_box = haishoku.new_image('RGB', (50, 50), color_mean[1])
+        images.append(color_box)
+
+    # generate and show the palette
+    haishoku.joint_image(images)
 
 
 if __name__ == "__main__":

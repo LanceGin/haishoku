@@ -39,3 +39,26 @@ def get_colors(image_path):
 
     image_colors = image.getcolors(max_colors)
     return image_colors
+
+def new_image(mode, size, color):
+    """ generate a new color block
+        to generate the palette
+    """
+    new_image = Image.new(mode, size, color)
+    return new_image
+
+def joint_image(images):
+    """ generate the palette
+        size: 50 x 400
+        color_block_size: 50 x 50
+    """
+    palette = Image.new('RGB', (400, 50))
+
+    # init the box position
+    init_ul = 0
+
+    for image in images:
+        palette.paste(image, (init_ul, 0))
+        init_ul += 50
+
+    palette.show()
