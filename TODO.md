@@ -8,4 +8,4 @@
 
 5. calculate the colors' weighted mean. ( √ )
 
-6. return the color. ( #xxxxxx )
+6. return the color. ( #xxxxxx ) ( √ )
