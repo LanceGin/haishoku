@@ -17,8 +17,11 @@ def main():
 
     # sort the image colors tuple
     sorted_image_colors = alg.sort_by_rgb(image_colors)
-    for color in sorted_image_colors:
-        print(color)
+
+    # group the colors by the accuaracy
+    grouped_image_colors = alg.group_by_accuracy(sorted_image_colors)
+
+    print(grouped_image_colors[0][0][0])
 
 
 if __name__ == "__main__":

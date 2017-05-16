@@ -2,8 +2,10 @@
 
 2. get the colors of the image instance, take care of the max colors. ( √ )
 
-3. group the colors. ( (0 ~ 255) => 4 parts )
+3. group the colors. ( (0 ~ 255) => 3 parts ) ( √ )
 
 4. sort the item colors tuple. ( √ )
 
-5. return the color. ( #xxxxxx )
+5. calculate the colors' weighted mean.
+
+6. return the color. ( #xxxxxx )
