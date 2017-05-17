@@ -14,27 +14,8 @@ class Haishoku(object):
     def __init__(self, arg):
         super(Haishoku, self).__init__()
         self.arg = arg
-        
-    def showPalette(image_path):
-        # get the palette first
-        # 
-        # ?confuse whether to use Haishoku module name
-        # 
-        palette = Haishoku.getPalette(image_path)
 
-        # getnerate colors boxes
-        images = []
-        for color_mean in palette:
-            color_box = haillow.new_image('RGB', (50, 50), color_mean)
-            images.append(color_box)
-
-        # generate and show the palette
-        haillow.joint_image(images)
-
-    def getDominant(image_path=None):
-        print("under construction")
-
-    def getPalette(image_path=None):
+    def getColorsMean(image_path):
         if image_path is None:
             print("image is none")
 
@@ -66,6 +47,49 @@ class Haishoku(object):
 
         # sort the colors_mean
         colors_mean = sorted(colors_mean, key=lambda x:x[1])
+
+        return colors_mean
+        
+    def showPalette(image_path):
+        # get the palette first
+        palette = Haishoku.getPalette(image_path)
+
+        # getnerate colors boxes
+        images = []
+        for color_mean in palette:
+            color_box = haillow.new_image('RGB', (50, 50), color_mean)
+            images.append(color_box)
+
+        # generate and show the palette
+        haillow.joint_image(images)
+
+    def showDominant(image_path):
+        # get the dominant color
+        dominant = Haishoku.getDominant(image_path)
+
+        # generate colors boxes
+        images = []
+        dominant_box = haillow.new_image('RGB', (50, 50), dominant)
+        for i in range(8):
+            images.append(dominant_box)
+
+        # show dominant color
+        haillow.joint_image(images)
+
+
+    def getDominant(image_path=None):
+        # get the colors_mean
+        colors_mean = Haishoku.getColorsMean(image_path)
+        colors_mean = sorted(colors_mean, reverse=True)
+
+        # get the dominant color
+        dominant_tuple = colors_mean[0]
+        dominant = dominant_tuple[1]
+        return dominant
+
+    def getPalette(image_path=None):
+        # get the colors_mean
+        colors_mean = Haishoku.getColorsMean(image_path)
 
         # get the palette
         palette = []
