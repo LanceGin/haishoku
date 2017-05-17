@@ -1,15 +1,23 @@
 # 中文文档
 
-### ~~安装~~ (开发中)
+### 安装
 
-...
+```shell
+pip3 install haishoku
+```
+
+或者你可能需要使用下面的方式
+
+```shell
+python3 -m pip install haishoku
+```
 
 ### 接口
 
 #### • getDominant( image )
 
 ```python
-from haishoku import Haishoku
+from haishoku.haishoku import Haishoku
 dominant = Haishoku.getDominant(image)
 ```
 
@@ -18,7 +26,7 @@ dominant = Haishoku.getDominant(image)
 #### • showDominant( image )
 
 ```python
-from haishoku import Haishoku
+from haishoku.haishoku import Haishoku
 Haishoku.showDominant( image )
 ```
 
@@ -27,7 +35,7 @@ Haishoku.showDominant( image )
 #### • getPalette( image )
 
 ```python
-from haishoku import Haishoku
+from haishoku.haishoku import Haishoku
 palette = Haishoku.getPalette( image )
 ```
 
@@ -36,7 +44,7 @@ palette = Haishoku.getPalette( image )
 #### • showPalette( image )
 
 ```python
-from haishoku import Haishoku
+from haishoku.haishoku import Haishoku
 Haishoku.showPalette( image )
 ```
 
