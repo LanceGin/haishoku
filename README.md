@@ -9,6 +9,6 @@ Haishoku is a development tool for grabbing the dominant color or representative
 
 ### Document
 
-Read [document](docs/document.md) ｜ [中文文档](docs/document_zh.md)
+Read [Document](docs/document.md) ｜ [中文文档](docs/document_zh.md)
 
 

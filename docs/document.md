@@ -10,7 +10,6 @@
 
 ```python
 from haishoku import Haishoku
-
 dominant = Haishoku.getDominant(image)
 ```
 
@@ -20,7 +19,6 @@ returns: (R, G, B) `tuple`
 
 ```python
 from haishoku import Haishoku
-
 Haishoku.showDominant( image )
 ```
 
@@ -30,7 +28,6 @@ it will open a temp image to show the dominant color.
 
 ```python
 from haishoku import Haishoku
-
 palette = Haishoku.getPalette( image )
 ```
 
@@ -40,7 +37,6 @@ returns: [(R, G, B), (R, G, B), ...] `Array` length <= 8
 
 ```python
 from haishoku import Haishoku
-
 Haishoku.showPalette( image )
 ```
 

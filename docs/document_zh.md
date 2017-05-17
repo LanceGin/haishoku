@@ -10,7 +10,6 @@
 
 ```python
 from haishoku import Haishoku
-
 dominant = Haishoku.getDominant(image)
 ```
 
@@ -20,7 +19,6 @@ dominant = Haishoku.getDominant(image)
 
 ```python
 from haishoku import Haishoku
-
 Haishoku.showDominant( image )
 ```
 
@@ -30,7 +28,6 @@ Haishoku.showDominant( image )
 
 ```python
 from haishoku import Haishoku
-
 palette = Haishoku.getPalette( image )
 ```
 
@@ -40,7 +37,6 @@ palette = Haishoku.getPalette( image )
 
 ```python
 from haishoku import Haishoku
-
 Haishoku.showPalette( image )
 ```
 
