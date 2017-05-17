@@ -3,62 +3,73 @@
 # @Date    : 2017-05-15 15:10
 # @Author  : Gin (gin.lance.inside@hotmail.com)
 # @Link    : 
-# @Disc    : about Pillow Apis
+# @Disc    : haishoku main function
 
-from PIL import Image
+import sys
+from . import haillow
+from . import alg
 
-def get_image(image_path):
-    image = Image.open(image_path)
-    return image
+class Haishoku(object):
+    """docstring for Haishoku"""
+    def __init__(self, arg):
+        super(Haishoku, self).__init__()
+        self.arg = arg
+        
+    def showPalette(image_path):
+        # get the palette first
+        # 
+        # ?confuse whether to use Haishoku module name
+        # 
+        palette = Haishoku.getPalette(image_path)
 
-def get_thumbnail(image):
-    image.thumbnail((256, 256))
-    return image
+        # getnerate colors boxes
+        images = []
+        for color_mean in palette:
+            color_box = haillow.new_image('RGB', (50, 50), color_mean)
+            images.append(color_box)
 
-def get_colors(image_path):
-    """ image instance
-    """
-    image = get_image(image_path)
+        # generate and show the palette
+        haillow.joint_image(images)
 
-    """ image thumbnail
-        size: 256 * 256
-        reduce the calculate time 
-    """
-    thumbnail = get_thumbnail(image)
+    def getDominant(image_path=None):
+        print("under construction")
 
+    def getPalette(image_path=None):
+        if image_path is None:
+            print("image is none")
 
-    """ calculate the max colors the image cound have
-        if the color is different in every pixel, the color counts may be the max.
-        so : 
-        max_colors = image.height * image.width
-    """
-    image_height = thumbnail.height
-    image_width = thumbnail.width
-    max_colors = image_height * image_width
-    print(max_colors)
+        # get colors tuple with haillow module
+        image_colors = haillow.get_colors(image_path)
 
-    image_colors = image.getcolors(max_colors)
-    return image_colors
+        # sort the image colors tuple
+        sorted_image_colors = alg.sort_by_rgb(image_colors)
 
-def new_image(mode, size, color):
-    """ generate a new color block
-        to generate the palette
-    """
-    new_image = Image.new(mode, size, color)
-    return new_image
+        # group the colors by the accuaracy
+        grouped_image_colors = alg.group_by_accuracy(sorted_image_colors)
 
-def joint_image(images):
-    """ generate the palette
-        size: 50 x 400
-        color_block_size: 50 x 50
-    """
-    palette = Image.new('RGB', (400, 50))
+        # get the weighted mean of all colors
+        colors_mean = []
+        for i in range(3):
+            for j in range(3):
+                for k in range(3):
+                    grouped_image_color = grouped_image_colors[i][j][k]
+                    if 0 != len(grouped_image_color):
+                        color_mean = alg.get_weighted_mean(grouped_image_color)
+                        colors_mean.append(color_mean)
 
-    # init the box position
-    init_ul = 0
+        # return the most 8 colors
+        temp_sorted_colors_mean = sorted(colors_mean)
+        if 8 < len(temp_sorted_colors_mean):
+            colors_mean = temp_sorted_colors_mean[len(temp_sorted_colors_mean)-8 : len(temp_sorted_colors_mean)]
+        else:
+            colors_mean = temp_sorted_colors_mean
 
-    for image in images:
-        palette.paste(image, (init_ul, 0))
-        init_ul += 50
+        # sort the colors_mean
+        colors_mean = sorted(colors_mean, key=lambda x:x[1])
 
-    palette.show()
+        # get the palette
+        palette = []
+        for c_m in colors_mean:
+            palette.append(c_m[1])
+
+        return palette
