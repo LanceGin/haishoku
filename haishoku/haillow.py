@@ -51,7 +51,7 @@ def joint_image(images):
         size: 50 x 400
         color_block_size: 50 x 50
     """
-    palette = Image.new('RGB', (400, 50))
+    palette = Image.new('RGB', (400, 20))
 
     # init the box position
     init_ul = 0

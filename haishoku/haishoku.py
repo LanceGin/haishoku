@@ -57,7 +57,7 @@ class Haishoku(object):
         # getnerate colors boxes
         images = []
         for color_mean in palette:
-            color_box = haillow.new_image('RGB', (50, 50), color_mean)
+            color_box = haillow.new_image('RGB', (50, 20), color_mean)
             images.append(color_box)
 
         # generate and show the palette
@@ -69,7 +69,7 @@ class Haishoku(object):
 
         # generate colors boxes
         images = []
-        dominant_box = haillow.new_image('RGB', (50, 50), dominant)
+        dominant_box = haillow.new_image('RGB', (50, 20), dominant)
         for i in range(8):
             images.append(dominant_box)
 
