@@ -20,5 +20,11 @@ def main():
     # showDominant api
     Haishoku.showDominant(path)
 
+    # Haishoku object
+    h = Haishoku.loadHaishoku(path)
+    print(h.image)
+    print(h.palette)
+    print(h.dominant)
+
 if __name__ == "__main__":
     main()
