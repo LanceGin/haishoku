@@ -10,11 +10,56 @@ from . import haillow
 from . import alg
 
 class Haishoku(object):
-    """docstring for Haishoku"""
-    def __init__(self, arg):
-        super(Haishoku, self).__init__()
-        self.arg = arg
 
+    """ init Haishoku obj
+    """
+    def __init__(self):
+        self.image = None
+        self.dominant = None
+        self.palette = None
+
+    """ load the Haishoku obj
+        the obj will have all properties and function
+    """
+    @classmethod
+    def loadHaishoku(self, image):
+        # get colors mean
+        colors_mean = Haishoku.getColorsMean(image)
+
+        # calculate the palette
+        palette = []
+        for c_m in colors_mean:
+            palette.append(c_m[1])
+
+        # calculate the dominant
+        colors_mean = sorted(colors_mean, reverse=True)
+        dominant_tuple = colors_mean[0]
+        dominant = dominant_tuple[1]
+
+        # set the obj property value
+        self.image = image
+        self.palette = palette
+        self.dominant = dominant
+        return self
+
+    """ get the properties
+    """
+    @property
+    def dominant(self):
+        return self.dominant
+
+    @property
+    def palette(self):
+        return self.palette
+
+
+    """ immediate api
+
+        1. showPalette
+        2. showDominant
+        3. getDominant
+        4. getPalette
+    """
     def getColorsMean(image_path):
         if image_path is None:
             print("image is none")
