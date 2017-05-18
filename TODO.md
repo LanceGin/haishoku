@@ -15,3 +15,7 @@
 8. add getDominant api to get the image's dominant color. ( √ )
 
 9. add getPalette api to get the image's palette. ( √ )
+
+10. upload to pypi. ( √ )
+
+11. add loadHaishoku api to get a Haishoku instance. ( √ )
