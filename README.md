@@ -13,6 +13,8 @@ Haishoku is a development tool for grabbing the dominant color or representative
 ### Demo
 ![demo](http://wx2.sinaimg.cn/large/89243dfbly1ffoekfainzj20dw05k0u7.jpg)
 
+( original image's source: dribbble )
+
 ### Installation
 
 ```shell
