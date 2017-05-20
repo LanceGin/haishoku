@@ -19,3 +19,7 @@
 10. upload to pypi. ( √ )
 
 11. add loadHaishoku api to get a Haishoku instance. ( √ )
+
+12. base on k-means alg.
+
+13. show the percentage information with the palette.
