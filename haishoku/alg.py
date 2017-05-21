@@ -6,18 +6,51 @@
 # @Disc    : alg about palette
 
 import random
+import math
 
 def clusterGen(k):
-    """ generate k random colors
+    """ Generate k random colors
+        The palette will show k colors.
+        Also, the k's value will effect the accuracy
     """
-    cluster = []
+    clusters = []
     for i in range(k):
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
-        cluster.append((r, g, b))
+        clusters.append((r, g, b))
 
-    return cluster
+    return clusters
+
+def groupColorsByClusters(colors, clusters):
+    """ this function will group all colors to the 
+        cluster that is closest to.
+    """
+    
+    # define a color_clusters array
+    color_clusters = []
+    for i in range(len(clusters)):
+        temp_array = []
+        color_clusters.append(temp_array)
+
+    # group the colors by clusters
+    for color in colors:
+        # calculate the distance between color and each cluster
+        diff_temp = []
+        for cluster in clusters:
+            diff_sum = 0
+            for i in range(len(cluster)):
+                diff_i = color[1][i] - cluster[i]
+                diff_sum += math.pow( diff_i, 2 )
+            diff_sqrt = math.sqrt(diff_sum)
+            diff_temp.append(diff_sqrt)
+        # get the smallest diff
+        diff_min = min(diff_temp)
+        diff_min_index = diff_temp.index(diff_min)
+        color_clusters[diff_min_index].append(color)
+
+    return color_clusters
+            
 
 def sort_by_rgb(colors_tuple):
     """ colors_tuple contains color count and color RGB

@@ -67,15 +67,17 @@ class Haishoku(object):
         return sorted_image_colors
 
     def getPalette(image_path):
-        # sorted_image_colors = Haishoku.getSortedColors(image_path)
+        sorted_image_colors = Haishoku.getSortedColors(image_path)
 
         # k-means alg default set k to 8
         k = 8
+        # generate k random colors
+        clusters = alg.clusterGen(k)
 
-        # generate 8 random colors
-        cluster = alg.clusterGen(k)
+        # calculate the palette with sorted_colors and clusters
+        color_clusters = alg.groupColorsByClusters(sorted_image_colors, clusters)
 
-        return cluster
+        return color_clusters
 
     """ immediate api
 
