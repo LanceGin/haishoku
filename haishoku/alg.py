@@ -63,6 +63,32 @@ def calOffsetOfCluster(color_cluster, cluster):
             offset += offset_temp
     return offset
 
+def newCluster(color_cluster):
+    """ calculate the new cluster
+        just calculate the mean of each color_cluster
+    """
+    r = 0
+    g = 0
+    b = 0
+    count = 0
+    for cc in color_cluster:
+        count += cc[0]
+        r += cc[1][0] * cc[0]
+        g += cc[1][1] * cc[0]
+        b += cc[1][2] * cc[0]
+
+    print("r: " + str(r))
+    print("g: " + str(g))
+    print("b: " + str(b))
+    print("count: " + str(count))
+    r_mean = int(r / count)
+    g_mean = int(g / count)
+    b_mean = int(b / count)
+    cluster = (r_mean, g_mean, b_mean)
+    print(cluster)
+    return cluster
+
+
 def sort_by_rgb(colors_tuple):
     """ colors_tuple contains color count and color RGB
         we want to sort the tuple by RGB
