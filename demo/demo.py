@@ -7,7 +7,7 @@ def main():
     path = "demo_01.png"
 
     colors = Haishoku.getPalette(path)
-    print(len(colors))
+    # print(colors)
 
 if __name__ == "__main__":
     main()

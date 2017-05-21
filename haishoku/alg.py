@@ -26,7 +26,7 @@ def groupColorsByClusters(colors, clusters):
     """ this function will group all colors to the 
         cluster that is closest to.
     """
-    
+
     # define a color_clusters array
     color_clusters = []
     for i in range(len(clusters)):
@@ -50,7 +50,18 @@ def groupColorsByClusters(colors, clusters):
         color_clusters[diff_min_index].append(color)
 
     return color_clusters
-            
+
+def calOffsetOfCluster(color_cluster, cluster):
+    """ this function will calculate the offset of the cluster
+        (cl_i - cc_i) ** 2
+    """
+    offset = 0
+    for cc in color_cluster:
+        l = len(cluster)
+        for i in range(l):
+            offset_temp = math.pow( (cc[1][i] - cluster[i]), 2 )
+            offset += offset_temp
+    return offset
 
 def sort_by_rgb(colors_tuple):
     """ colors_tuple contains color count and color RGB
