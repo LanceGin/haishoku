@@ -74,21 +74,27 @@ class Haishoku(object):
         # generate k random colors
         clusters = alg.clusterGen(k)
 
-        # calculate the palette with sorted_colors and clusters
-        color_clusters = alg.groupColorsByClusters(sorted_image_colors, clusters)
+        for i in range(2):
+            # calculate the palette with sorted_colors and clusters
+            color_clusters = alg.groupColorsByClusters(sorted_image_colors, clusters)
 
-        # calculate the offset of each color cluster
-        offset_sum = 0
-        for color_cluster in color_clusters:
-            cc_index = color_clusters.index(color_cluster)
-            cluster = clusters[cc_index]
-            offset = alg.calOffsetOfCluster(color_cluster, cluster)
-            offset_sum += offset
-        # calculate the new clusters value
-        # clusters = 
+            # calculate the offset of each color cluster and the new clusters value
+            offset_sum = 0
+            clusters_new = []
+            for color_cluster in color_clusters:
+                print(color_cluster)
+                cc_index = color_clusters.index(color_cluster)
+                cluster = clusters[cc_index]
+                offset = alg.calOffsetOfCluster(color_cluster, cluster)
+                offset_sum += offset
 
-        # return offset_sum
-        print(offset_sum)
+                cluster_new = alg.newCluster(color_cluster)
+                clusters_new.append(cluster_new)
+            
+            clusters = clusters_new
+
+            # return offset_sum
+            print(offset_sum)
 
     """ immediate api
 
