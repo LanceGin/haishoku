@@ -53,6 +53,30 @@ class Haishoku(object):
         return self.palette
 
 
+
+
+    # 
+    # 
+    # K-Means algorithm implement
+    # 
+    # 
+
+    def getSortedColors(image_path):
+        image_colors = haillow.get_colors(image_path)
+        sorted_image_colors = alg.sort_by_rgb(image_colors)
+        return sorted_image_colors
+
+    def getPalette(image_path):
+        # sorted_image_colors = Haishoku.getSortedColors(image_path)
+
+        # k-means alg default set k to 8
+        k = 8
+
+        # generate 8 random colors
+        cluster = alg.clusterGen(k)
+
+        return cluster
+
     """ immediate api
 
         1. showPalette
@@ -131,14 +155,3 @@ class Haishoku(object):
         dominant_tuple = colors_mean[0]
         dominant = dominant_tuple[1]
         return dominant
-
-    def getPalette(image_path=None):
-        # get the colors_mean
-        colors_mean = Haishoku.getColorsMean(image_path)
-
-        # get the palette
-        palette = []
-        for c_m in colors_mean:
-            palette.append(c_m[1])
-
-        return palette

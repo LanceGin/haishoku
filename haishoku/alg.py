@@ -5,6 +5,20 @@
 # @Link    : 
 # @Disc    : alg about palette
 
+import random
+
+def clusterGen(k):
+    """ generate k random colors
+    """
+    cluster = []
+    for i in range(k):
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        cluster.append((r, g, b))
+
+    return cluster
+
 def sort_by_rgb(colors_tuple):
     """ colors_tuple contains color count and color RGB
         we want to sort the tuple by RGB
