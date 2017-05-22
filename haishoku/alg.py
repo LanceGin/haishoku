@@ -8,17 +8,25 @@
 import random
 import math
 
-def clusterGen(k):
+def clusterGen(k, colors):
     """ Generate k random colors
         The palette will show k colors.
         Also, the k's value will effect the accuracy
     """
     clusters = []
+    # generate the clusters randomly
+    # for i in range(k):
+    #     r = random.randint(0, 255)
+    #     g = random.randint(0, 255)
+    #     b = random.randint(0, 255)
+    #     clusters.append((r, g, b))
+
+    # generate the clusters that exist in colors
+    l = len(colors)
     for i in range(k):
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        clusters.append((r, g, b))
+        r = random.randint(0, l)
+        cluster = colors[r][1]
+        clusters.append(cluster)
 
     return clusters
 
