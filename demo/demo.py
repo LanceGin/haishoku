@@ -1,5 +1,5 @@
 import sys
-sys.path.append("..")
+sys.path.insert(0, "..")
 
 from haishoku.haishoku import Haishoku
 
@@ -22,7 +22,6 @@ def main():
 
     # Haishoku object
     h = Haishoku.loadHaishoku(path)
-    print(h.image)
     print(h.palette)
     print(h.dominant)
 

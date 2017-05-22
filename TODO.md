@@ -22,4 +22,4 @@
 
 12. ~~base on k-means alg.~~ ( x )
 
-13. show the percentage information with the palette.
+13. show the percentage information with the palette. ( √ )

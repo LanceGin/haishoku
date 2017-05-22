@@ -58,6 +58,6 @@ def joint_image(images):
 
     for image in images:
         palette.paste(image, (init_ul, 0))
-        init_ul += 50
+        init_ul += image.width
 
     palette.show()

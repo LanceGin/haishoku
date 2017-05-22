@@ -14,7 +14,6 @@ class Haishoku(object):
     """ init Haishoku obj
     """
     def __init__(self):
-        self.image = None
         self.dominant = None
         self.palette = None
 
@@ -22,22 +21,17 @@ class Haishoku(object):
         the obj will have all properties and function
     """
     @classmethod
-    def loadHaishoku(self, image):
+    def loadHaishoku(self, image_path):
         # get colors mean
-        colors_mean = Haishoku.getColorsMean(image)
+        colors_mean = Haishoku.getColorsMean(image_path)
 
         # calculate the palette
-        palette = []
-        for c_m in colors_mean:
-            palette.append(c_m[1])
+        palette = Haishoku.getPalette(image_path)
 
         # calculate the dominant
-        colors_mean = sorted(colors_mean, reverse=True)
-        dominant_tuple = colors_mean[0]
-        dominant = dominant_tuple[1]
+        dominant = Haishoku.getDominant(image_path)
 
         # set the obj property value
-        self.image = image
         self.palette = palette
         self.dominant = dominant
         return self
@@ -61,9 +55,6 @@ class Haishoku(object):
         4. getPalette
     """
     def getColorsMean(image_path):
-        if image_path is None:
-            print("image is none")
-
         # get colors tuple with haillow module
         image_colors = haillow.get_colors(image_path)
 
@@ -91,7 +82,7 @@ class Haishoku(object):
             colors_mean = temp_sorted_colors_mean
 
         # sort the colors_mean
-        colors_mean = sorted(colors_mean, key=lambda x:x[1])
+        colors_mean = sorted(colors_mean, reverse=True)
 
         return colors_mean
         
@@ -102,7 +93,8 @@ class Haishoku(object):
         # getnerate colors boxes
         images = []
         for color_mean in palette:
-            color_box = haillow.new_image('RGB', (50, 20), color_mean)
+            w = color_mean[0] * 400
+            color_box = haillow.new_image('RGB', (int(w), 20), color_mean[1])
             images.append(color_box)
 
         # generate and show the palette
@@ -137,8 +129,17 @@ class Haishoku(object):
         colors_mean = Haishoku.getColorsMean(image_path)
 
         # get the palette
-        palette = []
+        palette_tmp = []
+        count_sum = 0
         for c_m in colors_mean:
-            palette.append(c_m[1])
+            count_sum += c_m[0]
+            palette_tmp.append(c_m)
+
+        # calulate the percentage
+        palette = []
+        for p in palette_tmp:
+            pp = '%.2f' % (p[0] / count_sum)
+            tp = (float(pp), p[1])
+            palette.append(tp)
 
         return palette
