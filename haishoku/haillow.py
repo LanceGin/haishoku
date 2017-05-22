@@ -18,7 +18,7 @@ def get_thumbnail(image):
 def get_colors(image_path):
     """ image instance
     """
-    image = get_image(image_path)
+    image = get_image(image_path).convert('RGB')
 
     """ image thumbnail
         size: 256 * 256
