@@ -65,7 +65,7 @@ from haishoku.haishoku import Haishoku
 palette = Haishoku.getPalette( image )
 ```
 
-returns: [(R, G, B), (R, G, B), ...] `Array` length <= 8
+returns: [(percentage, (R, G, B)), (percentage, (R, G, B)), ...] `Array` length <= 8
 
 #### • showPalette( image )
 

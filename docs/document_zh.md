@@ -65,7 +65,7 @@ from haishoku.haishoku import Haishoku
 palette = Haishoku.getPalette( image )
 ```
 
-返回一个结构为： [(R, G, B), (R, G, B), ...] 最大长度为8的`数组`
+返回一个结构为： [(percentage, (R, G, B)), (percentage, (R, G, B)), ...] 最大长度为8的`数组`
 
 #### • showPalette( image )
 
