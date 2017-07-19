@@ -5,6 +5,7 @@ from haishoku.haishoku import Haishoku
 
 def main():
     path = "demo_01.png"
+    # path = "http://wx2.sinaimg.cn/large/89243dfbly1ffoekfainzj20dw05k0u7.jpg"
 
     # getPalette api
     palette = Haishoku.getPalette(path)
