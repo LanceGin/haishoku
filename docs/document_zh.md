@@ -13,7 +13,7 @@ Haishoku 是一个用来获取图片主色调和主要配色方案的python库�
 3. 从`v1.1.3`版本开始，可以直接从网络url生成Haishoku对象
 
 ### 示例
-![demo](http://wx2.sinaimg.cn/large/89243dfbly1ffoekfainzj20dw05k0u7.jpg)
+![demo](http://orhcxc3kd.bkt.clouddn.com/haishoku-1.1.3.png)
 
 ( 原图来源: dribbble )
 
