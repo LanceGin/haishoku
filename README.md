@@ -10,7 +10,7 @@ Haishoku is a development tool for grabbing the dominant color or representative
 
 2. Grab the representative `color palette` from a image.
 
-3. From `v1.1.3`, Haishoku could load a image from remote url. 
+3. From `v1.1.4`, Haishoku could load a image from remote url. 
 
 ### Demo
 ![demo](http://orhcxc3kd.bkt.clouddn.com/haishoku-1.1.3.png)
