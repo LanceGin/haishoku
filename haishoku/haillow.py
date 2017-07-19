@@ -6,8 +6,13 @@
 # @Disc    : about Pillow Apis
 
 from PIL import Image
+import urllib.request,io
 
 def get_image(image_path):
+    # if the image_path is a remote url, read the image at first
+    if image_path.startswith("http://"):
+        image_path = io.BytesIO(urllib.request.urlopen(image_path).read())
+
     image = Image.open(image_path)
     return image
 
