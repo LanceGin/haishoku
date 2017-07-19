@@ -24,4 +24,4 @@
 
 13. show the percentage information with the palette. ( √ )
 
-14. load image instance from a remote url.
+14. load image instance from a remote url. (√)
