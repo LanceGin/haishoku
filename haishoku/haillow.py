@@ -10,7 +10,7 @@ import urllib.request,io
 
 def get_image(image_path):
     # if the image_path is a remote url, read the image at first
-    if image_path.startswith("http://") || image_path.startswith("https://"):
+    if image_path.startswith("http://") or image_path.startswith("https://"):
         image_path = io.BytesIO(urllib.request.urlopen(image_path).read())
 
     image = Image.open(image_path)
