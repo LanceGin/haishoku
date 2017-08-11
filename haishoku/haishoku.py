@@ -96,6 +96,35 @@ class Haishoku(object):
         palette = sorted(clusters)
         return palette
 
+    def new_getPalette(image_path):
+        sorted_image_colors = Haishoku.getSortedColors(image_path)
+
+        k=8
+
+        clusters = alg.new_clusterGen(k, sorted_image_colors)
+
+        for i in range(k):
+            # calculate the palette with sorted_colors and clusters
+            color_clusters = alg.groupColorsByClusters(sorted_image_colors, clusters)
+
+            # calculate the offset of each color cluster and the new clusters value
+            offset_sum = 0
+            clusters_new = []
+            for color_cluster in color_clusters:
+
+                cc_index = color_clusters.index(color_cluster)
+                cluster = clusters[cc_index]
+                offset = alg.calOffsetOfCluster(color_cluster, cluster)
+                offset_sum += offset
+
+                cluster_new = alg.newCluster(color_cluster)
+                clusters_new.append(cluster_new)
+            
+            clusters = clusters_new
+
+        palette = sorted(clusters)
+        return palette
+
     """ immediate api
 
         1. showPalette

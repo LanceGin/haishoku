@@ -30,6 +30,13 @@ def clusterGen(k, colors):
 
     return clusters
 
+def new_clusterGen(k, colors):
+    new_clusters=[]
+    l=len(colors)
+    for i in range(1,k+1):
+        new_clusters.append(colors[i*k-1][1])
+    return new_clusters
+
 def groupColorsByClusters(colors, clusters):
     """ this function will group all colors to the 
         cluster that is closest to.
