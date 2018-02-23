@@ -13,7 +13,7 @@ Haishoku is a development tool for grabbing the dominant color or representative
 3. From `v1.1.4`, Haishoku could load a image from remote url. 
 
 ### Demo
-![demo](http://orhcxc3kd.bkt.clouddn.com/haishoku-1.1.3.png)
+![demo](http://orhcxc3kd.bkt.clouddn.com/haishoku.png)
 
 ( original image's source: dribbble )
 
