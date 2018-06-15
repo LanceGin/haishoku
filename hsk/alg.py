@@ -1,6 +1,6 @@
 import numpy as np
 from datetime import datetime as dt
-
+from random import randint
 
 def get_most_color(weighted_colors):
     rgb_cube = group_colors_by_cube(weighted_colors)
@@ -17,7 +17,6 @@ def get_most_color(weighted_colors):
                     ave_rgb = list(np.average(npa_rgbs, axis=0))
                     color = list(map(int, ave_rgb))
     end = dt.now()
-    print("Get Dominant Takes: {}".format(end - start))
     return color
 
 
@@ -66,7 +65,7 @@ def __locate_color_by_cube(color_rgb):
 
 def k_means(k, weighted_colors):
     # k 个cluster的而为数组
-    clusters_arr = __init_clusters(k, weighted_colors)
+    clusters_arr = __init_clusters(k, weighted_colors, True)
     # 所有颜色的二维数组
     # 解包为[weight, r, g, b]
     colors_arr = __tile_weighted_colors(weighted_colors)
@@ -80,7 +79,12 @@ def k_means(k, weighted_colors):
 
     while new_offset_sum is None \
             or old_offset_sum is None \
-            or (new_offset_sum / old_offset_sum < 0.983 and recursion_times < 10):
+            or (new_offset_sum / old_offset_sum < 0.99 and recursion_times < 10):
+        if new_offset_sum is not None and old_offset_sum is not None:
+            print("Recursion {0} gets an optimization rate: {1}".format(
+                recursion_times, new_offset_sum / old_offset_sum
+            ))
+
         start = dt.now()
         old_offset_sum = new_offset_sum
         new_offset_sum = 0
@@ -102,10 +106,15 @@ def k_means(k, weighted_colors):
         for i in range(k):
             # 算入palette & weights
             clusted_colors[i] = clusted_colors[i].reshape(len(clusted_colors[i]) // 4, 4)
-            average_rgb_i = np.average(clusted_colors[i][:, 1:], axis=0).tolist()
+            tmp_arr = clusted_colors[i].copy()
+            tmp_weights = np.sum(tmp_arr[:, 0])
+            for j in range(3):
+                tmp_arr[:, 1+j] = tmp_arr[:, 1+j] * tmp_arr[:, 0]
+            average_rgb_i = (np.sum(tmp_arr[:, 1:], axis=0) / tmp_weights).tolist()
+            # average_rgb_i = np.average(clusted_colors[i][:, 1:] * clusted_colors[i][:, 0], axis=0).tolist()
             average_rgb_i = list(map(int, average_rgb_i))
             palette.append(average_rgb_i)
-            weights.append(len(clusted_colors[i]))
+            weights.append(tmp_weights)
 
         # 使用新形成的palette作为cluster，计算offset
         palette_arr = np.array(palette)
@@ -124,16 +133,22 @@ def k_means(k, weighted_colors):
         recursion_times += 1
 
     print("Stop Recursion by a Optimization Rate: {}".format(new_offset_sum / old_offset_sum))
-
+    print()
 
     return palette, weights
 
 
-def __init_clusters(k, weighted_colors):
+def __init_clusters(k, weighted_colors, random=False):
     clusters = []
     length = len(weighted_colors)
-    for i in range(k):
-        clusters.append(list(weighted_colors[i * length // k][1]))
+    if random:
+        for i in range(k):
+            r = randint(0, length)
+            cluster = weighted_colors[r][1]
+            clusters.append(cluster)
+    else:
+        for i in range(k):
+            clusters.append(list(weighted_colors[i * length // k][1]))
     return np.array(clusters)
 
 

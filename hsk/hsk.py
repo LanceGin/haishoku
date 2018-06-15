@@ -11,12 +11,11 @@ class HSK:
 
         self.__palette = None
         self.__palette_weights = None
-        self.__palette_img = None
+        self.palette_img = None
         self.__dominant = None
-        self.__dominant_img = None
+        self.dominant_img = None
 
         self.__extract()
-        self.__sort_palette_and_weight()
 
     def __extract(self):
         """
@@ -37,8 +36,9 @@ class HSK:
         """
         self.__dominant = alg.get_most_color(self.__weighted_colors)
         self.__palette, self.__palette_weights = alg.k_means(self.__k, self.__weighted_colors)
-        self.__dominant_img = IMG.joint_image([IMG.new_image(tuple(self.__dominant))])
-        self.__palette_img = IMG.joint_image(
+        self.__sort_palette_and_weight()
+        self.dominant_img = IMG.joint_image([IMG.new_image(tuple(self.__dominant))])
+        self.palette_img = IMG.joint_image(
             [IMG.new_image(tuple(c)) for c in self.__palette],
             weights=self.__palette_weights
         )
@@ -61,22 +61,22 @@ class HSK:
         return self.__palette
 
     def show_palette(self):
-        self.__palette_img.show()
+        self.palette_img.show()
 
     def save_palette(self, to_path=None):
         if not to_path:
             to_path = "haishoku_palette_{}.png".format(int(datetime.now().timestamp()))
-        self.__palette_img.save(to_path)
+        self.palette_img.save(to_path)
 
     @property
     def dominant(self):
         return self.__dominant
 
     def show_dominant(self):
-        self.__dominant_img.show()
+        self.dominant_img.show()
 
     def save_dominant(self, to_path=None):
         if not to_path:
             to_path = "haishoku_dominant_{}.png".format(int(datetime.now().timestamp()))
-        self.__palette_img.save(to_path)
+        self.palette_img.save(to_path)
 
