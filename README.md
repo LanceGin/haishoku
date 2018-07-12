@@ -81,3 +81,4 @@ it will open a temporary image to show the palette.
  [中文文档](docs/document_zh.md)
 
 
+ 
