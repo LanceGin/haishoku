@@ -96,6 +96,7 @@ class Haishoku(object):
         palette = sorted(clusters)
         return palette
 
+
     """ immediate api
 
         1. showPalette

@@ -1,0 +1,1 @@
+from .hsk import HSK
