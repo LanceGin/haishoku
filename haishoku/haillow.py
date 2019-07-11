@@ -14,6 +14,10 @@ def get_image(image_path):
         image_path = io.BytesIO(urllib.request.urlopen(image_path).read())
 
     image = Image.open(image_path)
+
+    # convert non-RGB mode to RGB mode
+    if image.mode != "RGB":
+        image = image.convert("RGB")
     return image
 
 def get_thumbnail(image):
