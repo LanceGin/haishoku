@@ -9,11 +9,14 @@ from PIL import Image
 import urllib.request,io
 
 def get_image(image_path):
-    # if the image_path is a remote url, read the image at first
-    if image_path.startswith("http://") or image_path.startswith("https://"):
-        image_path = io.BytesIO(urllib.request.urlopen(image_path).read())
-
-    image = Image.open(image_path)
+    if isinstance(image_path, str):
+        # if the image_path is a remote url, read the image at first
+        if image_path.startswith("http://") or image_path.startswith("https://"):
+            image_path = io.BytesIO(urllib.request.urlopen(image_path).read())
+        
+        image = Image.open(image_path)
+    else:
+        image = image_path
 
     # convert non-RGB mode to RGB mode
     if image.mode != "RGB":
